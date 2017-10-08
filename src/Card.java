@@ -9,6 +9,7 @@ public class Card {
     private String cardName;
     private String cardSuit;
     private BufferedImage cardImage;
+    private boolean isTrump;
 
     /**
      * Constructor for card class
@@ -18,11 +19,12 @@ public class Card {
      * @param image = image of the card
      */
 
-    public Card(String name, String sign, int value, BufferedImage image) {
+    public Card(String name, String sign, int value, BufferedImage image, boolean isTrump) {
         this.cardValue = value;
         this.cardName = name;
         this.cardSuit = sign;
         this.cardImage = image;
+        this.isTrump = isTrump;
     }
 
     /**
@@ -46,7 +48,8 @@ public class Card {
 
     public static void main(String[] args) throws IOException {
 
-        Card two_of_hearts = new Card("Two","Hearts", 2, ImageIO.read(new File("2_of_hearts.png")));
+        Card two_of_hearts = new Card("Two","Hearts", 2, ImageIO.read(new File("2_of_hearts.png")),
+                true);
         System.out.println(two_of_hearts.toString());
         System.out.println("cardvalue: " + two_of_hearts.getCardValue());
 
