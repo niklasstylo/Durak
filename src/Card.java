@@ -14,14 +14,14 @@ public class Card {
      * Constructor for card class
      * @param value = 2,3,4,5,....,10,11,12,13,14
      * @param name = 2,3,4,5,....,10,J,Q,K,A
-     * @param sign = hearts, clubs, spades, diamonds
+     * @param suit = hearts, clubs, spades, diamonds
      * @param image = image of the card
      */
 
-    public Card(String name, String sign, int value, BufferedImage image) {
+    public Card(String name, String suit, int value, BufferedImage image) {
         this.cardValue = value;
         this.cardName = name;
-        this.cardSuit = sign;
+        this.cardSuit = suit;
         this.cardImage = image;
     }
 
