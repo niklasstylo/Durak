@@ -120,8 +120,8 @@ public class Deck {
 
         shuffleDeck();
         findTrump();
-        for (int i = 0; i < fullDeck.size() ; i++ ){
-            System.out.println(fullDeck.get(i) + " Value: " + fullDeck.get(i).getCardValue());
+        for (int i = 0; i < fullDeck.size(); i++) {
+            System.out.println(fullDeck.get(i) + " --- Value: " + fullDeck.get(i).getCardValue());
         }
 
 
@@ -137,7 +137,6 @@ public class Deck {
                 Card a = fullDeck.get(index);
                 fullDeck.set(index, fullDeck.get(i));
                 fullDeck.set(i, a);
-
             }
 
         }
@@ -146,9 +145,9 @@ public class Deck {
 
     void findTrump() {
         Random find = new Random();
-
         int whichTrump = find.nextInt(4) + 1;
         String trumpSuit = "";
+        int count = 0;
 
         switch (whichTrump) {
             case 1:
@@ -167,14 +166,20 @@ public class Deck {
 
         System.out.println("Trump of this shuffle is: " + trumpSuit); // Testing //TODO remove
 
-        for ( int i = 0 ; i < fullDeck.size() ; i++){
+        for (int i = 0; i < fullDeck.size(); i++) {
 
-            if(fullDeck.get(i).getCardSuit().equals(trumpSuit)){
+            if (fullDeck.get(i).getCardSuit().equals(trumpSuit)) { // Find the Trump
                 fullDeck.get(i).setTrump(true);
                 fullDeck.get(i).setCardValue(fullDeck.get(i).getCardValue() + 14);
+                count++;
+                if (count == 1) { // Set the first trump found as the last card of Deck
+                    Card switchARoo = fullDeck.get(51);
+                    fullDeck.set(51, fullDeck.get(i));
+                    fullDeck.set(i, switchARoo);
+
+                }
             }
         }
-
     }
 
     public void setFullDeck(List<Card> fullDeck) {
@@ -185,6 +190,9 @@ public class Deck {
         return fullDeck;
     }
 
+    public static void main(String[] args) throws IOException {
+        new Deck().allCards();
+    }
 
 
 }
