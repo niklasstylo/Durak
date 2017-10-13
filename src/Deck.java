@@ -1,18 +1,15 @@
 import javax.imageio.ImageIO;
 import java.io.File;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 //S=clubs,H=clubs,C=clubs,D=Diamond
 
-public class Deck  {
-    Card[] fullDeck = new Card[52]; // standard size of a deck
+public class Deck {
 
-
-
+    private List<Card> fullDeck = new ArrayList<>(52); // standard size of a deck
 
     void allCards() throws IOException {
         Card twoS = new Card("Two", "Spades", 2, ImageIO.read(new File("2_of_spades.png")), false);
@@ -67,105 +64,127 @@ public class Deck  {
         Card QD = new Card("Queen", "Diamonds", 12, ImageIO.read(new File("queen_of_diamonds.png")), false);
         Card KD = new Card("King", "Diamonds", 13, ImageIO.read(new File("king_of_diamonds.png")), false);
         Card AD = new Card("Ace", "Diamonds", 14, ImageIO.read(new File("ace_of_diamonds.png")), false);
-        fullDeck[0] = twoH;
-        fullDeck[1] = threeH;
-        fullDeck[2] = fourH;
-        fullDeck[3] = fiveH;
-        fullDeck[4] = sixH;
-        fullDeck[5] = sevenH;
-        fullDeck[6] = eightH;
-        fullDeck[7] = nineH;
-        fullDeck[8] = tenH;
-        fullDeck[9] = JH;
-        fullDeck[10] = QH;
-        fullDeck[11] = KH;
-        fullDeck[12] = AH;
-        fullDeck[13] = twoS;
-        fullDeck[14] = threeS;
-        fullDeck[15] = fourS;
-        fullDeck[16] = fiveS;
-        fullDeck[17] = sixS;
-        fullDeck[18] = sevenS;
-        fullDeck[19] = eightS;
-        fullDeck[20] = nineS;
-        fullDeck[21] = tenS;
-        fullDeck[22] = JS;
-        fullDeck[23] = QS;
-        fullDeck[24] = KS;
-        fullDeck[25] = AS;
-        fullDeck[26] = twoC;
-        fullDeck[27] = threeC;
-        fullDeck[28] = fourC;
-        fullDeck[29] = fiveC;
-        fullDeck[30] = sixC;
-        fullDeck[31] = sevenC;
-        fullDeck[32] = eightC;
-        fullDeck[33] = nineC;
-        fullDeck[34] = tenC;
-        fullDeck[35] = JC;
-        fullDeck[36] = QC;
-        fullDeck[37] = KC;
-        fullDeck[38] = AC;
-        fullDeck[39] = twoD;
-        fullDeck[40] = threeD;
-        fullDeck[41] = fourD;
-        fullDeck[42] = fiveD;
-        fullDeck[43] = sixD;
-        fullDeck[44] = sevenD;
-        fullDeck[45] = eightD;
-        fullDeck[46] = nineD;
-        fullDeck[47] = tenD;
-        fullDeck[48] = JD;
-        fullDeck[49] = QD;
-        fullDeck[50] = KD;
-        fullDeck[51] = AD;
+
+        fullDeck.add(twoH);
+        fullDeck.add(threeH);
+        fullDeck.add(fourH);
+        fullDeck.add(fiveH);
+        fullDeck.add(sixH);
+        fullDeck.add(sevenH);
+        fullDeck.add(eightH);
+        fullDeck.add(nineH);
+        fullDeck.add(tenH);
+        fullDeck.add(JH);
+        fullDeck.add(QH);
+        fullDeck.add(KH);
+        fullDeck.add(AH);
+        fullDeck.add(twoS);
+        fullDeck.add(threeS);
+        fullDeck.add(fourS);
+        fullDeck.add(fiveS);
+        fullDeck.add(sixS);
+        fullDeck.add(sevenS);
+        fullDeck.add(eightS);
+        fullDeck.add(nineS);
+        fullDeck.add(tenS);
+        fullDeck.add(JS);
+        fullDeck.add(QS);
+        fullDeck.add(KS);
+        fullDeck.add(AS);
+        fullDeck.add(twoC);
+        fullDeck.add(threeC);
+        fullDeck.add(fourC);
+        fullDeck.add(fiveC);
+        fullDeck.add(sixC);
+        fullDeck.add(sevenC);
+        fullDeck.add(eightC);
+        fullDeck.add(nineC);
+        fullDeck.add(tenC);
+        fullDeck.add(JC);
+        fullDeck.add(QC);
+        fullDeck.add(KC);
+        fullDeck.add(AC);
+        fullDeck.add(twoD);
+        fullDeck.add(threeD);
+        fullDeck.add(fourD);
+        fullDeck.add(fiveD);
+        fullDeck.add(sixD);
+        fullDeck.add(sevenD);
+        fullDeck.add(eightD);
+        fullDeck.add(nineD);
+        fullDeck.add(tenD);
+        fullDeck.add(JD);
+        fullDeck.add(QD);
+        fullDeck.add(KD);
+        fullDeck.add(AD);
+
         shuffleDeck();
         findTrump();
-        for (int print = 0; print < fullDeck.length; print++) {
-            System.out.println(fullDeck[print] + " " + fullDeck[print].getCardValue());
+        for (int i = 0; i < fullDeck.size() ; i++ ){
+            System.out.println(fullDeck.get(i) + " Value: " + fullDeck.get(i).getCardValue());
         }
+
 
     }
 
     void shuffleDeck() {
         Random shuffle = new Random();
-        for (int ii = 0; ii < 3; ii++) {
-            for (int i = fullDeck.length - 1; i > 0; i--) {
+
+        for (int ii = 0; ii < 3; ii++) { // shuffles deck 3 times
+
+            for (int i = fullDeck.size() - 1; i > 0; i--) {
                 int index = shuffle.nextInt(i + 1);
-                Card a = fullDeck[index];
-                fullDeck[index] = fullDeck[i];
-                fullDeck[i] = a;
+                Card a = fullDeck.get(index);
+                fullDeck.set(index, fullDeck.get(i));
+                fullDeck.set(i, a);
 
             }
+
         }
 
     }
 
     void findTrump() {
         Random find = new Random();
+
         int whichTrump = find.nextInt(4) + 1;
-        String suit = "";
+        String trumpSuit = "";
+
         switch (whichTrump) {
             case 1:
-                suit = "Hearts";
+                trumpSuit = "Hearts";
                 break;
             case 2:
-                suit = "Spades";
+                trumpSuit = "Spades";
                 break;
             case 3:
-                suit = "Clubs";
+                trumpSuit = "Clubs";
                 break;
             case 4:
-                suit = "Diamonds";
+                trumpSuit = "Diamonds";
                 break;
         }
-        System.out.println(suit);
-        for ( int i = 0 ; i < fullDeck.length ; i++){
-            if(fullDeck[i].getCardSuit().equals(suit)){
-                fullDeck[i].setTrump(true);
-                fullDeck[i].setCardValue(fullDeck[i].getCardValue() + 14);
+
+        System.out.println("Trump of this shuffle is: " + trumpSuit); // Testing //TODO remove
+
+        for ( int i = 0 ; i < fullDeck.size() ; i++){
+
+            if(fullDeck.get(i).getCardSuit().equals(trumpSuit)){
+                fullDeck.get(i).setTrump(true);
+                fullDeck.get(i).setCardValue(fullDeck.get(i).getCardValue() + 14);
             }
         }
 
     }
+
+    public void setFullDeck(List<Card> fullDeck) {
+        this.fullDeck = fullDeck;
+    }
+
+    public List<Card> getFullDeck() {
+        return fullDeck;
+    }
+
+
+
 }

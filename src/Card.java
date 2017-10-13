@@ -82,10 +82,10 @@ public class Card  {
         isTrump = trump;
     }
 
-    public static void main(String[] args) throws IOException {
-    new Deck().allCards();
 
-    }
+
+
+
 
 
 }
