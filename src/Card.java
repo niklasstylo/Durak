@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Card {
+public class Card  {
 
     private int cardValue;
     private String cardName;
@@ -46,12 +46,44 @@ public class Card {
         return cardValue;
     }
 
-    public static void main(String[] args) throws IOException {
+    public void setCardValue(int cardValue) {
+        this.cardValue = cardValue;
+    }
 
-        Card two_of_hearts = new Card("Two","Hearts", 2, ImageIO.read(new File("2_of_hearts.png")),
-                true);
-        System.out.println(two_of_hearts.toString());
-        System.out.println("cardvalue: " + two_of_hearts.getCardValue());
+    public String getCardName() {
+        return cardName;
+    }
+
+    public void setCardName(String cardName) {
+        this.cardName = cardName;
+    }
+
+    public String getCardSuit() {
+        return cardSuit;
+    }
+
+    public void setCardSuit(String cardSuit) {
+        this.cardSuit = cardSuit;
+    }
+
+    public BufferedImage getCardImage() {
+        return cardImage;
+    }
+
+    public void setCardImage(BufferedImage cardImage) {
+        this.cardImage = cardImage;
+    }
+
+    public boolean isTrump() {
+        return isTrump;
+    }
+
+    public void setTrump(boolean trump) {
+        isTrump = trump;
+    }
+
+    public static void main(String[] args) throws IOException {
+    new Deck().allCards();
 
     }
 
